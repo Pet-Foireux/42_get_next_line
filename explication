@@ -1,0 +1,52 @@
+ * Comment fonctionne get_next_line et les fonctions associées
+
+ * 1. Initialisation :
+ *    - Quand on veut lire une ligne d’un fichier, on appelle 
+ *      get_next_line(fd), où fd est le numéro du fichier.
+ *    - On vérifie d'abord si le fichier est ouvert correctement 
+ *      et si on a défini une taille de tampon (BUFFER_SIZE) pour 
+ *      la lecture.
+
+ * 2. Lecture des données :
+ *    - La fonction ft_readline(fd, storage) est utilisée pour 
+ *      lire le contenu du fichier.
+ *    - Si storage (qui contient les données lues jusqu'à présent) 
+ *      est vide, on l'initialise.
+ *    - On crée un petit tampon pour stocker temporairement les 
+ *      données lues.
+ *    - On lit le fichier, ligne par ligne, jusqu'à ce qu'on trouve 
+ *      un caractère de nouvelle ligne (\n) ou qu'il n'y ait plus 
+ *      rien à lire.
+ *    - On combine les nouvelles données lues avec ce qui est 
+ *      déjà dans storage grâce à ft_strjoin.
+
+ * 3. Extraction de la ligne :
+ *    - Après avoir lu, on utilise ft_getline(storage) pour obtenir 
+ *      la ligne.
+ *    - On regarde jusqu'où on doit copier dans storage, jusqu'à 
+ *      la nouvelle ligne ou la fin du stockage.
+ *    - On alloue de la mémoire pour cette ligne et on y copie 
+ *      les caractères.
+
+ * 4. Mise à jour du stockage :
+ *    - Une fois la ligne extraite, on appelle 
+ *      ft_trim_storage(storage) pour garder seulement les données 
+ *      restantes dans storage pour la prochaine lecture.
+ *    - Cela permet de préparer storage pour les prochaines lectures 
+ *      sans perdre les données.
+
+ * 5. Gestion des chaînes et de la mémoire :
+ *    - D'autres fonctions comme ft_strlen (pour compter les 
+ *      caractères) et ft_strchr (pour chercher un caractère) 
+ *      aident à manipuler les chaînes de caractères.
+ *    - ft_calloc est utilisée pour s’assurer que la mémoire 
+ *      allouée est vide (initialisée à zéro).
+
+ * En résumé :
+ * Ces fonctions travaillent ensemble pour lire un fichier ligne 
+ * par ligne de manière efficace. Elles gèrent la mémoire, 
+ * s’assurent qu'il n'y a pas d'erreurs et nous permettent de 
+ * récupérer chaque ligne que l'on souhaite lire. Ce processus 
+ * est utile pour des programmes qui doivent traiter du texte, 
+ * comme des analyseurs de fichiers ou des lecteurs de 
+ * configuration.
